@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  min-height: 100vh;
+  background-color: #0A0A0F;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes progressBar {
+  from { width: 0%; }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.anim-fade-up   { animation: fadeInUp 0.5s ease-out both; }
+.anim-fade-in   { animation: fadeIn 0.4s ease-out both; }
+.anim-count-up  { animation: countUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+.shimmer {
+  background: linear-gradient(90deg, #12121A 25%, #1E1E2E 50%, #12121A 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.answer-card {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.answer-card:hover {
+  transform: translateY(-2px);
+  border-color: #00D4AA !important;
+}
+.answer-card.selected {
+  border-color: #00D4AA !important;
+  background: rgba(0, 212, 170, 0.08);
+}
+
+.progress-bar-inner {
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-teal {
+  box-shadow: 0 0 30px rgba(0, 212, 170, 0.4);
+}
+.glow-gold {
+  box-shadow: 0 0 30px rgba(255, 184, 0, 0.4);
+}
+
+.blur-overlay {
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 80%);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 80%);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: #1E1E2E;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #00D4AA;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,212,170,0.5);
+}
