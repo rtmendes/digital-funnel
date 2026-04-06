@@ -5,14 +5,9 @@
  * Required env vars in Vercel dashboard:
  *   GHL_PRIVATE_TOKEN  — GHL Private Integration access token
  *   GHL_LOCATION_ID    — GHL location ID (defaults to Growthworks CRM sub-account)
- *
- * To get GHL_PRIVATE_TOKEN:
- *  1. In GHL go to Settings → Private Integrations → + New Integration
- *  2. Name it "Digital Funnel", enable Contacts scope (read + write)
- *  3. Copy the Access Token → add as GHL_PRIVATE_TOKEN in Vercel env vars
  */
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -70,7 +65,6 @@ export default async function handler(req, res) {
 
     const contactId = ghlData.contact?.id;
 
-    // Optionally enroll in a workflow
     const WORKFLOW_ID = process.env.GHL_FUNNEL_WORKFLOW_ID;
     if (WORKFLOW_ID && contactId) {
       await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/workflow/${WORKFLOW_ID}`, {
@@ -91,4 +85,4 @@ export default async function handler(req, res) {
     console.log('LEAD (exception):', JSON.stringify(req.body));
     return res.status(200).json({ ok: true, note: 'Lead logged' });
   }
-}
+};
