@@ -170,8 +170,8 @@ const ARCHETYPES = {
   },
 }
 
-// GHL webhook — replace with your actual endpoint
-const GHL_WEBHOOK_URL = 'https://YOUR_GHL_WEBHOOK_URL_HERE'
+// Lead capture endpoint — Vercel serverless function (/api/capture-lead.js)
+const CAPTURE_URL = '/api/capture-lead'
 
 // ─────────────────────────────────────────────
 // HELPERS
@@ -523,10 +523,10 @@ function EmailCapture({ archetype, onSubmit }) {
     setError('')
 
     try {
-      await fetch(GHL_WEBHOOK_URL, {
+      await fetch(CAPTURE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        mode: 'no-cors',
+
         body: JSON.stringify({
           firstName: name,
           email,
